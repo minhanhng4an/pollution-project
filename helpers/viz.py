@@ -3,7 +3,7 @@ import matplotlib
 import numpy as np
 import pandas as pd
 import geopandas as gpd
-import geoplot as gplt
+# import geoplot as gplt
 import streamlit as st
 
 plt.style.use('ggplot')
@@ -114,20 +114,20 @@ def ranking_pollution(df, pollutant, values):
     
     return fig
 
-def pollution_map(merged, pollution,values=True):
+# def pollution_map(merged, pollution,values=True):
     
-    # Draw Chart
-    fig, ax = plt.subplots()
-    gplt.choropleth(merged[['NAME', 'geometry', pollution, 'coords']],
-    hue=pollution,cmap='Reds', ax=ax)
+#     # Draw Chart
+#     fig, ax = plt.subplots()
+#     gplt.choropleth(merged[['NAME', 'geometry', pollution, 'coords']],
+#     hue=pollution,cmap='Reds', ax=ax)
 
-    # Label states and data
-    if values:
-        for _,row in merged.iterrows():
-            if row['NAME'] not in ['Connecticut', 'Massachusetts', 'Rhode Island','Vermont',
-            'District of Columbia', 'Delaware', 'Maryland', 'New Jersey']:
-                ax.text(row['coords'][0], row['coords'][1], row['NAME'],ha='center',fontsize=3)
-                ax.text(row['coords'][0], row['coords'][1]-.75,
-                round(row[pollution],2) if row[pollution]!=0 else 'N/A',ha='center',fontsize=4)
+#     # Label states and data
+#     if values:
+#         for _,row in merged.iterrows():
+#             if row['NAME'] not in ['Connecticut', 'Massachusetts', 'Rhode Island','Vermont',
+#             'District of Columbia', 'Delaware', 'Maryland', 'New Jersey']:
+#                 ax.text(row['coords'][0], row['coords'][1], row['NAME'],ha='center',fontsize=3)
+#                 ax.text(row['coords'][0], row['coords'][1]-.75,
+#                 round(row[pollution],2) if row[pollution]!=0 else 'N/A',ha='center',fontsize=4)
     
-    return fig
+#     return fig

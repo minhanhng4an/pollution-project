@@ -1,12 +1,12 @@
 import pandas as pandas
 import matplotlib.pyplot as pyplot
 import numpy as numpy
-import geopandas as gpd
-import geoplot as gplt
+#import geopandas as gpd
+# import geoplot as gplt
 import streamlit as st
 
-from helpers.data import load_data, data_preprocessing, load_geo_data, geo_data_preprocessing
-from helpers.viz import yearly_pollution, monthly_pollution, ranking_pollution, pollution_map
+from helpers.data import *
+from helpers.viz import *
 from helpers.model import pollution_prediction
 
 DATA_PATH = 'pollution_us_2000_2016.csv'
@@ -81,27 +81,27 @@ st.pyplot(prediction_model)
 
 # Data Mapping
 
-st.header('Data Mapping')
+# st.header('Data Mapping')
 
-GEO_DATA_PATH = 'geo_data.json'
+# GEO_DATA_PATH = 'geo_data.json'
 
 # Read Data
-geo_data = load_geo_data(GEO_DATA_PATH)
+# geo_data = load_geo_data(GEO_DATA_PATH)
 
-st.subheader('Raw Geo Data (sample of 3)')
+# st.subheader('Raw Geo Data (sample of 3)')
 
-st.write(geo_data.sample(3))
+# st.write(geo_data.sample(3))
 
 # Clean and merge data
-st.subheader('Geo data Preprocessing: Cleaned and Merged Geo data (sample of 3)')
-merged = geo_data_preprocessing(geo_data.copy(), df_cleaned.copy())
-st.write(merged.sample(3))
+# st.subheader('Geo data Preprocessing: Cleaned and Merged Geo data (sample of 3)')
+# merged = geo_data_preprocessing(geo_data.copy(), df_cleaned.copy())
+# st.write(merged.sample(3))
 
 # Map data
-st.subheader('Mapped data')
+# st.subheader('Mapped data')
 
-st.markdown(f"__US {pollutant} Averages from 2000 to 2016__")
+# st.markdown(f"__US {pollutant} Averages from 2000 to 2016__")
 
-pollution_map = pollution_map(merged, pollutant, values)
+# pollution_map = pollution_map(merged, pollutant, values)
 
-st.pyplot(pollution_map)
+# st.pyplot(pollution_map)

@@ -1,6 +1,5 @@
 import pandas as pd
-import geopandas as gpd
-import geoplot as gplt
+# import geopandas as gpd
 import streamlit as st
 
 @st.cache(allow_output_mutation = True)
@@ -42,35 +41,35 @@ def data_preprocessing(df):
 
         return df
 
-@st.cache(allow_output_mutation = True)
-def load_geo_data(path):
-    geo_data = gpd.read_file(path)
+# @st.cache(allow_output_mutation = True)
+# def load_geo_data(path):
+#     geo_data = gpd.read_file(path)
 
-    # Remove non-relevant columns
-    geo_data = geo_data[['NAME','geometry']]
+#     # Remove non-relevant columns
+#     geo_data = geo_data[['NAME','geometry']]
 
-    return geo_data
+#     return geo_data
 
-def geo_data_preprocessing(geo_data, df):
+# def geo_data_preprocessing(geo_data, df):
     
-    # Exclude Puerto Rico
-    geo_data = geo_data[geo_data['NAME']!='Puerto Rico']
+#     # Exclude Puerto Rico
+#     geo_data = geo_data[geo_data['NAME']!='Puerto Rico']
 
-    # Group the pollution data by state
-    grouped = df.groupby('State').mean()
+#     # Group the pollution data by state
+#     grouped = df.groupby('State').mean()
 
-    # Merge the pollution data and geo data
-    merged = geo_data.merge(grouped,how='left',right_index=True,left_on='NAME')
+#     # Merge the pollution data and geo data
+#     merged = geo_data.merge(grouped,how='left',right_index=True,left_on='NAME')
 
-    # Exlude Alaska and Hawaii (does not fit on map)
-    merged = merged[merged['NAME']!='Alaska']
-    merged = merged[merged['NAME']!='Hawaii']
+#     # Exlude Alaska and Hawaii (does not fit on map)
+#     merged = merged[merged['NAME']!='Alaska']
+#     merged = merged[merged['NAME']!='Hawaii']
 
-    # Fill null values
-    merged.fillna(0,inplace=True)
+#     # Fill null values
+#     merged.fillna(0,inplace=True)
 
-    # Extract coordinates from geo data
-    merged['coords'] = merged['geometry'].apply(lambda x: x.representative_point().coords)
-    merged['coords'] = [coords[0] for coords in merged['coords']]
+#     # Extract coordinates from geo data
+#     merged['coords'] = merged['geometry'].apply(lambda x: x.representative_point().coords)
+#     merged['coords'] = [coords[0] for coords in merged['coords']]
 
-    return merged
+#     return merged
